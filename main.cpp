@@ -1,6 +1,7 @@
 #include <iostream>
 #include <windows.h>
 //#include <conio.h>
+#include<string>
 
 #include "ETable.cpp"
 
@@ -14,18 +15,25 @@ void setBulgarianText() {
 int main()
 {
     setBulgarianText();
-
-    ETable *eTable = new ETable("test.txt");
+    string fileName;
+    string rowNum;
+    do{
+    cout<<"Create file: \n";
+    cin>>fileName;
+    if(fileName.find('.')!=string::npos) cout<<"you can't use '.' in filename! \n";
+    if(doesFileExist(".\\Data/"+fileName+".txt")==1) cout<<"such file already exists! \n";
+    }while(fileName.find('.')!=string::npos || doesFileExist(".\\Data/"+fileName+".txt")==1);
+    ETable *eTable = new ETable(fileName+".txt");
     char operation = 'N';
     do {
-        cout << "Въведете операция." << endl;
-        cout << "Извеждане съдържанието на таблицата на екрана print P/p" << endl;
-        cout << "Редактира съдържанието на дадена клетка edit E/e" << endl;
+        cout << "Choose what to do with the file:" << endl;
+        cout << "To see the table type: P/p" << endl;
+        cout << "To change sell value type: E/e" << endl;
         // Not required. Usefull for testing:
-        cout << "Създава тестови файл с данни C/c" << endl;
-        cout << "Разпознава типовете данни от файл R/r" << endl;
+        cout << "To create test data type: C/c" << endl;
+        cout << "To see type of data in the table type: R/r" << endl;
         //
-        cout << "Изход Q/q" << endl;
+        cout << "To Exit type: Q/q" << endl;
         cin >> operation; //operation = getch();
         switch(operation) {
         case 'P':
@@ -34,7 +42,11 @@ int main()
             break;
         case 'E':
         case 'e':
-            eTable->saveRow("R1");
+            cout<<"choose row (ex: R1 or 1)";
+            cin>>rowNum;
+            cout<<typeid(rowNum).name();
+            //if the addres is number convert it to int
+            eTable->saveRow(rowNum);
             break;
         case 'C':
         case 'c':
