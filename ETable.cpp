@@ -14,7 +14,7 @@ using namespace std;
 const int LINE_LENGTH = 1024;
 const string FIELD_SEPARATOR = ",";
 
-void createDataDir(string pathName) {
+void createDataDir(string pathName) { //create folder for the files
     string cmd = "mkdir ";
     cmd.append(pathName);
     cmd.append(" 1>nul 2>nul"); // Eat the message in console.
@@ -26,12 +26,16 @@ ETable::ETable(string fileName) {//Create empty file
     activeFilePath = folderForFiles;
     activeFilePath.append("/");
     activeFilePath.append(fileName);
+    ofstream activeFile;
+    activeFile.open(activeFilePath, fstream::out);
+    activeFile.close();
+    cout<<"file "<<fileName<<" was created \n";
 }
 
 ETable::~ETable() {
 }
 
-string ETable::getLastError() {
+string ETable::getLastError() { //returns the last error
     return lastError;
 }
 
@@ -49,7 +53,7 @@ bool ETable::readRow(int rowNumber) {
     return true;
 }
 
-bool doesFileExists(string filePathName) {//check if there already exists such file
+bool doesFileExist(string filePathName) {//check if there already exists such file
     ifstream f(filePathName);
     return f.good();
 }
@@ -67,7 +71,7 @@ void ETable::createTestData() {// insert test data into file
     activeFile.close();
 }
 
-bool ETable::saveRow(string address) {//write new row into the file
+bool ETable::saveRow(string address) {//write new row into the file  --it replaces the whole table with the row
     ofstream activeFile;
     char line[] = "10, 20, 30\n";
 
@@ -77,7 +81,7 @@ bool ETable::saveRow(string address) {//write new row into the file
     return true;
 }
 
-bool ETable::saveRow(int rowNumber) {
+bool ETable::saveRow(int rowNumber) { //as the above but the address is a number
     return true;
 }
 
@@ -96,7 +100,7 @@ static inline void rtrim(std::string &s) {
 // inLine - one row from the file.
 // outFields - parsed data as strings.
 // returns the number of fields.
-int parseLine(char* inLine, string* outFields) {
+int parseLine(char* inLine, string* outFields) { //returns the number of cells in a row
     string line = inLine;
     if (line.size() == 0) return 0;
 
