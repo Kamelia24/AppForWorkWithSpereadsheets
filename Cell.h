@@ -35,7 +35,8 @@ class CellValue
     // Instance of class CellValue might contain both value and formula. When saving only the formula is saved.
     // Values of the cells are calculated runtime.
 };
-template<typename T>
+
+
 class Cell
 {
     private:
@@ -53,6 +54,7 @@ class Cell
     // Convert string value:
     bool setValue(const string stringValue);
     string getLastError();
+    template<typename T>
     T FormulaResult(string result);
 };
 #endif // CELLH
