@@ -70,8 +70,8 @@ bool isLongValue(const string stringValue, long* outValue) {
             return false;
         }
     }
-    try {
-        *outValue = stol(stringValue);
+    try { //we try to run the code if there are any errors the catch is activated
+        *outValue = stol(stringValue);//parses string to long value
         return true;
     }
     catch (const invalid_argument& ex) {
@@ -112,7 +112,7 @@ bool isDoubleValue(const string stringValue, double* outValue) {
         }
     }
     try {
-        *outValue = stod(stringValue);
+        *outValue = stod(stringValue);//parses string value as float value
         return true;
     }
     catch (const invalid_argument& ex) {
