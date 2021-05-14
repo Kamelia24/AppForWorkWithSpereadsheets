@@ -171,3 +171,32 @@ bool Cell::setValue(const string stringValue) { // Try to recognize the type of 
     lastError = "Value is not recognized: " + stringValue;
     return false;
 }
+template<typename T>
+T Cell::FormulaResult(string formula){ //returns the value of the formula (ako ne e s adresi)
+    T firstAttribute;
+    T secondAttribute;
+    string action;
+    //funkciq koqto razdelq formulata na chasti
+    long longValue;
+    double doubleValue;
+    if (firstAttribute.at(0) == 'R') { //if its address get its value
+        //izvikva funkciq koqto namira kletkata i vrushta stoinostta
+    }
+    if (secondAttribute.at(0) == 'R') { //if its address get its value
+        //izvikva funkciq koqto namira kletkata i vrushta stoinostta
+    }
+    if(!isLongValue(firstAttribute, &longValue) && !isDoubleValue(firstAttribute, &doubleValue)){
+            firstAttribute=0;
+    }
+     if(!isLongValue(secondAttribute, &longValue) && !isDoubleValue(secondAttribute, &doubleValue)){
+            secondAttribute=0;
+    }
+    switch (action){
+                case '+': return firstAttribute+secondAttribute;break;
+                case '-': return firstAttribute-secondAttribute;break;
+                case '*': return firstAttribute*secondAttribute;break;
+                case '/': return firstAttribute/secondAttribute;break;
+                case '%': return firstAttribute%secondAttribute;break;
+                default : lastError='Unrecognised action in formula'; return lastError;
+    }
+}
