@@ -6,11 +6,11 @@
 using namespace std;
 class ETable
 {
-    private:
+private:
     string lastError = "";
     string folderForFiles = ".\\Data"; // Here the data files will be created.
-    string activeFilePath = ""; // The file from which data is read or saved.
-    public:
+    string activeFilePath = "";        // The file from which data is read or saved.
+public:
     ETable(string fileName);
     ~ETable();
     bool readRow(string address);
