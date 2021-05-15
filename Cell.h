@@ -6,7 +6,7 @@ using namespace std;
 
 enum CellValueType
 {
-    LONG_VALUE,  // Need to be different from the predefined LONG.
+    LONG_VALUE, // Need to be different from the predefined LONG.
     DOUBLE_VALUE,
     STRING_VALUE,
     FORMULA,
@@ -25,7 +25,7 @@ struct CellValueHolder
 
 class CellValue
 {
-    public:
+public:
     CellValueType type;
     CellValueHolder value;
     bool hasFormula;
@@ -36,14 +36,13 @@ class CellValue
     // Values of the cells are calculated runtime.
 };
 
-
 class Cell
 {
-    private:
+private:
     CellValue value;
     string lastError = "";
 
-    public:
+public:
     Cell();
     ~Cell();
     CellValueType getValueType();
@@ -54,7 +53,7 @@ class Cell
     // Convert string value:
     bool setValue(const string stringValue);
     string getLastError();
-    template<typename T>
+    template <typename T>
     T FormulaResult(string result);
 };
 #endif // CELLH
