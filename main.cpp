@@ -35,8 +35,8 @@ int main()
     {
         cout << "Choose what to do with the file:" << endl;
         cout << "To see the table: P/p" << endl;
-        cout << "To change row: ER/er" << endl;
-        cout << "To change cell value: EC/ec" << endl;
+        cout << "To change row: A/a" << endl;
+        cout << "To change cell value: B/b" << endl;
         // Not required. Usefull for testing:
         cout << "To create test data: C/c" << endl;
         cout << "To see type of data in the table: R/r" << endl;
@@ -49,17 +49,17 @@ int main()
         case 'p':
             eTable->print();
             break;
-        case 'ER':
-        case 'er':
-            cout << "choose row (ex: R1 or 1)";
+        case 'A':
+        case 'a':
+            cout << "choose row (ex: R1)";
             cin >> rowNum;
-            cout << typeid(rowNum).name();
+            //cout << typeid(rowNum).name();
             //if the addres is number convert it to int
             eTable->saveRow(rowNum);
             break;
-        case 'EC':
-        case 'ec':
-            cout << "choose cell (ex: R1C2 or 1)";
+        case 'B':
+        case 'b':
+            cout << "choose cell (ex: R1C2)";
             cin >> address;
             cin >> value;
             //Cell->changeValue(address,value);
