@@ -1,9 +1,9 @@
 #ifndef CELLH
 #define CELLH
-#include <string>
+#include "string.h"
 
 using namespace std;
-
+///contains data types
 enum CellValueType
 {
     LONG_VALUE, // Need to be different from the predefined LONG.
@@ -13,33 +13,14 @@ enum CellValueType
     EMPTY_VALUE,
 };
 
-struct CellValueHolder
-{
-    long longValue;
-    double doubleValue;
-    string stringValue;
-    string formula;
-    CellValueHolder();
-    ~CellValueHolder();
-};
-
-class CellValue
-{
-public:
-    CellValueType type;
-    CellValueHolder value;
-    bool hasFormula;
-    string formulaAsString; // null - no formula
-    CellValue();
-    ~CellValue();
-    // Instance of class CellValue might contain both value and formula. When saving only the formula is saved.
-    // Values of the cells are calculated runtime.
-};
-
+tempalte<typename T>
+///class which contains info of the cell.
 class Cell
 {
 private:
-    CellValue value;
+    CellValueType type;
+    T value;
+    string formulaAsString;
     string lastError = "";
 
 public:
