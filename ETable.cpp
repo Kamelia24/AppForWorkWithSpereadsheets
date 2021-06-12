@@ -1,14 +1,7 @@
 #include <iostream>
-#include <fstream>
-#include <cstring>
-#include <algorithm>  //.find
-#include <functional> //for createDataDir
-#include <cctype>     // .isspace
-#include <locale>     // for the above include
-#include<iomanip>
 
 #include "ETable.h"
-#include "Cell.cpp"
+//#include "Cell.cpp"
 
 using namespace std;
 
@@ -38,12 +31,12 @@ ETable::ETable(string fileName)
 ETable::~ETable()
 {
 }
-
+///functions which returns the last recieved error when working with the table.
 string ETable::getLastError()
-{ //returns the last error
+{ 
     return lastError;
 }
-
+///functions which reads line from the table by given address.
 bool ETable::readRow(string address)
 {
     ifstream activeFile;
@@ -59,7 +52,7 @@ bool ETable::readRow(int rowNumber)
 {
     return true;
 }
-
+///function which checks if certain file exists by given filename.
 bool doesFileExist(string filePathName)
 { //check if there already exists such file
     ifstream f(filePathName);
@@ -80,7 +73,7 @@ void ETable::createTestData()
     activeFile.close();
 }
 
-bool ETable::saveRow(string address)
+bool ETable::saveRow(string address)//function which writes row into the file by given address.
 { //write new row into the file  --it replaces the whole table with the row
     ofstream activeFile;
     char line[] = "10, 20, 30\n";
@@ -174,9 +167,9 @@ void ETable::print()
     }
     activeFile.close();
 }
-
+///function which shows the user the data and her type for rvery cell in the table.
 void ETable::recognizeTestData()
-{ //shows cell data type or shows error if it isn't recognized
+{
     ifstream activeFile;
     char *line = new char[LINE_LENGTH];
     string fields[32];
