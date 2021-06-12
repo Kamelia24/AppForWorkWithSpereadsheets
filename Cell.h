@@ -1,19 +1,20 @@
 #ifndef CELLH
 #define CELLH
+
 #include "string.h"
 
 using namespace std;
 ///contains data types
 enum CellValueType
 {
-    LONG_VALUE, // Need to be different from the predefined LONG.
+    LONG_VALUE,
     DOUBLE_VALUE,
     STRING_VALUE,
     FORMULA,
     EMPTY_VALUE,
 };
 
-tempalte<typename T>
+template<typename T>
 ///class which contains info of the cell.
 class Cell
 {
